@@ -315,6 +315,10 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
     end
 
+    def configure_action_mailer_asset_host
+      action_mailer_asset_host %{ENV.fetch("ASSET_HOST", "ENV.fetch("APPLICATION_HOST"))}
+    end
+
     def configure_active_job
       configure_application_file(
         "config.active_job.queue_adapter = :delayed_job"

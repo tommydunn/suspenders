@@ -14,6 +14,11 @@ module Suspenders
       configure_environment(rails_env, config)
     end
 
+    def action_mailer_asset_host(asset_host)
+      config = "config.action_mailer.asset_host = \"http://#{asset_host}\""
+      configure_application_file(config)
+    end
+
     def configure_application_file(config)
       inject_into_file(
         "config/application.rb",
