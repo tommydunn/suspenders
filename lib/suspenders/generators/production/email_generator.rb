@@ -5,7 +5,8 @@ module Suspenders
     class EmailGenerator < Rails::Generators::Base
       source_root File.expand_path(
         File.join("..", "..", "..", "templates"),
-        File.dirname(__FILE__))
+        File.dirname(__FILE__),
+      )
 
       def smtp_configuration
         copy_file "smtp.rb", "config/smtp.rb"
