@@ -179,9 +179,10 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "configures email interceptor" do
-    smtp_file = IO.read(
-      File.join(project_path, *%w(config initializers email.rb)))
-    expect(smtp_file).
+    email_file = File.join(project_path, *%w(config initializers email.rb))
+    email_config = IO.read(email_file)
+
+    expect(email_config).
       to include(%{RecipientInterceptor.new(ENV["EMAIL_RECIPIENTS"])})
   end
 
